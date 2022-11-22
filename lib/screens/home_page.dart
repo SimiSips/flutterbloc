@@ -110,11 +110,11 @@ class _HomePageState extends State<HomePage> {
                     },
                     child: Card(
                       elevation: 8.0,
-                      margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
+                      margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
                       child: Container(
-                        decoration: BoxDecoration(color: Color.fromRGBO(64, 75, 96, .9)),
+                        decoration: const BoxDecoration(color: Color.fromRGBO(64, 75, 96, .9)),
                         child: ListTile(
-                          contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+                          contentPadding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
                           title: Text(data[index].name, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
                           subtitle: Row(
                             children: <Widget>[
@@ -145,4 +145,7 @@ class _HomePageState extends State<HomePage> {
         child: const Icon(Icons.add),
       ),
 
-      floa
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+    );
+  }
+}
