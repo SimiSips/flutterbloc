@@ -20,6 +20,19 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
       }
     });
 
+    on<Update>(((event, emit) async {
+      emit(ProductLoading());
+      await Future.delayed(const Duration(seconds: 1));
+      try {
+        await productRepository.update(
+            name: event.name,
+            price: event.price);
+        emit(ProductUpdated());
+      } catch (e) {
+        emit(ProductError(e.toString()));
+      }
+    }));
+
     on<GetData>((event, emit) async {
       emit(ProductLoading());
       await Future.delayed(const Duration(seconds: 1));

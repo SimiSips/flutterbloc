@@ -41,3 +41,15 @@ class ProductLoaded extends ProductState{
   @override
   List<Object?> get props => [mydata];
 }
+
+class ProductUpdating extends ProductState{
+
+  @override
+  List<Object?> get props => [];
+}
+
+class ProductUpdated extends ProductState{
+  @override
+  List<Object?> get props => [];
+}
+

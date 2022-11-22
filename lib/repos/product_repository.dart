@@ -21,9 +21,9 @@ class ProductRepository{
 
   Future<void> update({required String name, required String price}) async {
     final proCollection = FirebaseFirestore.instance.collection("products");
-    final proRef = proCollection.doc("22Q6UtlgDXv9MdeuWMAf");
+    final proRef = proCollection.doc("6qBCG8vev39GIGZnLk9D");
     try{
-      await proRef.update({"name": "Updated", "price": "12222"}); ///Posts data to the server
+      await proRef.update({"name": name, "price":price}); ///Posts data to the server
     } on FirebaseException catch (e) {
       if(kDebugMode) {
         print("Failed with error '${e.code}': ${e.message}");
@@ -43,6 +43,7 @@ class ProductRepository{
       pro.docs.forEach((element) {
         return proList.add(ProductModel.fromJson(element.data()));
       });
+      print(pro.docs[0].reference.id);
 
       return proList;
     } on FirebaseException catch (e) {

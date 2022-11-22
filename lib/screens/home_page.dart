@@ -73,6 +73,8 @@ class _HomePageState extends State<HomePage> {
 
   }
 
+
+
   @override
   void initState() {
     // TODO: implement initState
@@ -88,6 +90,49 @@ class _HomePageState extends State<HomePage> {
         title: const Center(child: Text('Flutter Bloc Firestore'),),
         elevation: 0.1,
         backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
+      ),
+      drawer: Drawer(
+        backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
+        child: ListView(
+
+          padding: EdgeInsets.zero,
+          children: [
+            const UserAccountsDrawerHeader(
+              decoration: BoxDecoration(color: Color.fromRGBO(64, 75, 96, .9)),
+              accountName: Text(
+                "Simphiwe Radeve",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              accountEmail: Text(
+                "simphiwe.radebe0706@gmail.com",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              currentAccountPicture: FlutterLogo(),
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.home,
+              ),
+              title: const Text('Page 1', style: TextStyle(color: Colors.white),),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.train,
+              ),
+              title: const Text('Page 2', style: TextStyle(color: Colors.white),),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
       ),
 
 
@@ -105,6 +150,7 @@ class _HomePageState extends State<HomePage> {
                               builder: (context) =>
                                   DetailScreen(
                                     pro: data[index],
+
                                   ))
                       );
                     },

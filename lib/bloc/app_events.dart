@@ -16,3 +16,12 @@ class Create extends ProductEvent{
 class GetData extends ProductEvent{
   GetData();
 }
+
+class Update extends ProductEvent{
+  final String name;
+  final String price;
+  final String id;
+
+  Update(this.name, this.price, this.id);
+}
+
