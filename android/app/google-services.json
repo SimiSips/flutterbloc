@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "392198047259",
+    "project_id": "flutterbloc-236db",
+    "storage_bucket": "flutterbloc-236db.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:392198047259:android:cd5b20ffad4224cbdb5abe",
+        "android_client_info": {
+          "package_name": "com.simphiwe.bloc.flutterbloc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "392198047259-cirrgujo229660uvb23v3bfb8den09s3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLBCX8uMcYJa3eGBxKMIbryl4rZEt1dKc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "392198047259-cirrgujo229660uvb23v3bfb8den09s3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
