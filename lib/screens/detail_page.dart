@@ -72,7 +72,7 @@ class _DetailScreenState extends State<DetailScreen> {
 
   void _updateData(context){
 
-    BlocProvider.of<ProductBloc>(context).add(Update(_nameController.text, _priceController.text, "6qBCG8vev39GIGZnLk9D"),);
+    BlocProvider.of<ProductBloc>(context).add(Update(_nameController.text, _priceController.text),);
 
   }
 

@@ -40,6 +40,7 @@ dependencies:
   equatable:
   cloud_firestore: ^4.1.0
   firebase_crashlytics: ^3.0.6
+  firebase_analytics: ^10.0.6
 
 dev_dependencies:
   flutter_test:

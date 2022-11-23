@@ -20,8 +20,8 @@ class GetData extends ProductEvent{
 class Update extends ProductEvent{
   final String name;
   final String price;
-  final String id;
 
-  Update(this.name, this.price, this.id);
+
+  Update(this.name, this.price);
 }
 

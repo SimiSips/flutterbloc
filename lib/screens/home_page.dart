@@ -100,7 +100,7 @@ class _HomePageState extends State<HomePage> {
             const UserAccountsDrawerHeader(
               decoration: BoxDecoration(color: Color.fromRGBO(64, 75, 96, .9)),
               accountName: Text(
-                "Simphiwe Radeve",
+                "Simphiwe Radebe",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
@@ -118,9 +118,7 @@ class _HomePageState extends State<HomePage> {
                 Icons.home,
               ),
               title: const Text('Page 1', style: TextStyle(color: Colors.white),),
-              onTap: () {
-                Navigator.pop(context);
-              },
+              onTap: () => throw Exception(),
             ),
             ListTile(
               leading: Icon(
