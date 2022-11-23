@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutterbloc/bloc/app_blocs.dart';
@@ -73,8 +74,6 @@ class _HomePageState extends State<HomePage> {
 
   }
 
-
-
   @override
   void initState() {
     // TODO: implement initState
@@ -85,14 +84,14 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
+      backgroundColor: const Color.fromRGBO(58, 66, 86, 1.0),
       appBar: AppBar(
         title: const Center(child: Text('Flutter Bloc Firestore'),),
         elevation: 0.1,
-        backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
+        backgroundColor: const Color.fromRGBO(58, 66, 86, 1.0),
       ),
       drawer: Drawer(
-        backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
+        backgroundColor: const Color.fromRGBO(58, 66, 86, 1.0),
         child: ListView(
 
           padding: EdgeInsets.zero,
@@ -114,14 +113,14 @@ class _HomePageState extends State<HomePage> {
               currentAccountPicture: FlutterLogo(),
             ),
             ListTile(
-              leading: Icon(
+              leading: const Icon(
                 Icons.home,
               ),
               title: const Text('Page 1', style: TextStyle(color: Colors.white),),
               onTap: () => throw Exception(),
             ),
             ListTile(
-              leading: Icon(
+              leading: const Icon(
                 Icons.train,
               ),
               title: const Text('Page 2', style: TextStyle(color: Colors.white),),
@@ -138,40 +137,74 @@ class _HomePageState extends State<HomePage> {
         builder: (context, state) {
           if (state is ProductLoaded){
             List<ProductModel> data = state.mydata;
-            return ListView.builder(
-                itemCount: data.length,
-                itemBuilder: (_, index){
-                  return InkWell(
-                    onTap: () {
-                      Navigator.of(context).push(
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  DetailScreen(
-                                    pro: data[index],
+            List<ProductModel> displayList = List.from(data);
 
-                                  ))
-                      );
-                    },
-                    child: Card(
-                      elevation: 8.0,
-                      margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
-                      child: Container(
-                        decoration: const BoxDecoration(color: Color.fromRGBO(64, 75, 96, .9)),
-                        child: ListTile(
-                          contentPadding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-                          title: Text(data[index].name, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
-                          subtitle: Row(
-                            children: <Widget>[
-                              Text(data[index].price, style: TextStyle(color: Colors.white))
-                            ],
-                          ),
-                          trailing: Icon(Icons.keyboard_arrow_right, color: Colors.white, size: 30.0),
-                        ),
+            void updateList(String value){
+              displayList = data.where((product) => product.name.toLowerCase().contains(value.toLowerCase())).toList();
+              if (kDebugMode) {
+                print(displayList[0].name);
+              }
+            }
+
+            return Column(
+              children: <Widget>[
+                Padding(
+                    padding: const EdgeInsets.only(left: 10, right: 10),
+                    child: TextField(
+                      onChanged: (value) => updateList(value),
+                      style: const TextStyle(
+                        color: Colors.white,
                       ),
-
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: const Color.fromRGBO(64, 75, 96, .9),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                          borderSide: BorderSide.none,
+                        ),
+                        hintText: "Search",
+                        prefixIcon: const Icon(Icons.search),
+                        prefixIconColor: Colors.white,
+                      ),
                     ),
-                  );
-                }
+                ),
+                const SizedBox(height: 20.0),
+                Expanded(child:  ListView.builder(
+                   itemCount: displayList.length,
+                   itemBuilder: (_, index){
+                     return InkWell(
+                       onTap: () {
+                         Navigator.of(context).push(
+                             MaterialPageRoute(
+                                 builder: (context) =>
+                                     DetailScreen(
+                                       pro: displayList[index],
+
+                                     ))
+                         );
+                       },
+                       child: Card(
+                         elevation: 8.0,
+                         margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
+                         child: Container(
+                           decoration: const BoxDecoration(color: Color.fromRGBO(64, 75, 96, .9)),
+                           child: ListTile(
+                             contentPadding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+                             title: Text(displayList[index].name, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+                             subtitle: Row(
+                               children: <Widget>[
+                                 Text(displayList[index].price, style: const TextStyle(color: Colors.white))
+                               ],
+                             ),
+                             trailing: const Icon(Icons.keyboard_arrow_right, color: Colors.white, size: 30.0),
+                           ),
+                         ),
+
+                       ),
+                     );
+                   }
+               ),)
+              ],
             );
           } else if(state is ProductLoading){
             return const Center(
