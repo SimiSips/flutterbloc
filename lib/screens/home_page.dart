@@ -143,6 +143,10 @@ class _HomePageState extends State<HomePage> {
               displayList = data.where((product) => product.name.toLowerCase().contains(value.toLowerCase())).toList();
               if (kDebugMode) {
                 print(displayList[0].name);
+                for(var i = 0; i < displayList.length; i++){
+                  print(displayList[i].name);
+                }
+               /* print(data.where((product) => product.name.toLowerCase().contains(value.toLowerCase())).toList());*/
               }
             }
 
