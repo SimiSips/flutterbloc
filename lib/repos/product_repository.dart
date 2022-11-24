@@ -19,9 +19,9 @@ class ProductRepository{
     }
   }
 
-  Future<void> update({required String name, required String price}) async {
+  Future<void> update({required String name, required String price, required DocumentSnapshot doc}) async {
     final proCollection = FirebaseFirestore.instance.collection("products");
-    final proRef = proCollection.doc("6qBCG8vev39GIGZnLk9D");
+    final proRef = proCollection.doc(doc.id);
 
     try{
       await proRef.update({"name": name, "price":price}); ///Posts data to the server
@@ -44,19 +44,6 @@ class ProductRepository{
       pro.docs.forEach((element) {
         return proList.add(ProductModel.fromJson(element.data()));
       });
-     /* var listLen = pro.docs.length;
-      for (var i = 0; i < listLen; i++) {
-        //print(pro.docs[i].reference.id);
-        var list = [];
-        //print(pro.docs[i].data());
-        final Map<String, dynamic> mapVar = { };
-        mapVar[pro.docs[i].reference.id] = pro.docs[i].data();
-        print(mapVar);
-
-      }
-      print(pro.docs.length);*/
-
-
 
       return proList;
     } on FirebaseException catch (e) {

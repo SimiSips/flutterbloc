@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutterbloc/bloc/app_events.dart';
 import 'package:flutterbloc/bloc/app_states.dart';
@@ -13,26 +14,13 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
       try {
         await productRepository.create(
             name: event.name,
-            price: event.price);
+            price: event.price,
+        );
         emit(ProductAdded());
       } catch (e) {
         emit(ProductError(e.toString()));
       }
     });
-
-    on<Update>(((event, emit) async {
-      emit(ProductLoading());
-      await Future.delayed(const Duration(seconds: 1));
-      try {
-        await productRepository.update(
-            name: event.name,
-            price: event.price);
-        emit(ProductUpdated());
-      } catch (e) {
-        emit(ProductError(e.toString()));
-      }
-    }));
-
     on<GetData>((event, emit) async {
       emit(ProductLoading());
       await Future.delayed(const Duration(seconds: 1));
@@ -43,5 +31,9 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
         emit(ProductError(e.toString()));
       }
     });
+
+    // on<NoInternet>((evenr, emit) async {
+    //
+    // })
   }
 }

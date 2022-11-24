@@ -86,7 +86,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: const Color.fromRGBO(58, 66, 86, 1.0),
       appBar: AppBar(
-        title: const Center(child: Text('Flutter Bloc Firestore'),),
+        title: const Center(child: Text('Home'),),
         elevation: 0.1,
         backgroundColor: const Color.fromRGBO(58, 66, 86, 1.0),
       ),
@@ -116,18 +116,10 @@ class _HomePageState extends State<HomePage> {
               leading: const Icon(
                 Icons.home,
               ),
-              title: const Text('Page 1', style: TextStyle(color: Colors.white),),
+              title: const Text('Crashlytics', style: TextStyle(color: Colors.white),),
               onTap: () => throw Exception(),
             ),
-            ListTile(
-              leading: const Icon(
-                Icons.train,
-              ),
-              title: const Text('Page 2', style: TextStyle(color: Colors.white),),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
+
           ],
         ),
       ),
@@ -142,7 +134,6 @@ class _HomePageState extends State<HomePage> {
             void updateList(String value){
               displayList = data.where((product) => product.name.toLowerCase().contains(value.toLowerCase())).toList();
               if (kDebugMode) {
-                print(displayList[0].name);
                 for(var i = 0; i < displayList.length; i++){
                   print(displayList[i].name);
                 }

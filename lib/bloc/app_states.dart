@@ -53,3 +53,8 @@ class ProductUpdated extends ProductState{
   List<Object?> get props => [];
 }
 
+class NoInternet extends ProductState{
+  @override
+  List<Object?> get props => [];
+}
+
